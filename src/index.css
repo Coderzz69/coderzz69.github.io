@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #000000;
+  --color-terminal-green: #00ff00;
+  --color-terminal-dim: #008000;
+  --font-mono: "Fira Code", "Courier New", monospace;
+}
+
+:root {
+  background-color: var(--color-terminal-bg);
+  color: var(--color-terminal-green);
+  font-family: var(--font-mono);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+/* Custom glow effect */
+.terminal-glow {
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s forwards;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #004400;
+  border-radius: 2px;
+}
