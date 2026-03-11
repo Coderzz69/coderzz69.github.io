@@ -19,7 +19,7 @@ export default function PortfolioTerminal() {
 Welcome to my interactive resume. Type help to see available commands.` },
     ])
     const [currentCommand, setCurrentCommand] = useState('')
-    const [historyIndex, setHistoryIndex] = useState(-1)
+    const [_, setHistoryIndex] = useState(-1)
     const bottomRef = useRef<HTMLDivElement>(null)
     const terminalRef = useRef<HTMLDivElement>(null)
     const inputRef = useRef<HTMLInputElement>(null)
