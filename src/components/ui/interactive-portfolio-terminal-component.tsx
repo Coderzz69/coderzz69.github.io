@@ -2,17 +2,18 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Mail, Github, Linkedin, Globe, Phone, MapPin, Award, BookOpen, Code, Briefcase } from 'lucide-react'
+import { cn } from "@/lib/utils"
 
 export default function PortfolioTerminal() {
     const [history, setHistory] = useState<Array<{ command: string; output: string }>>([
         {
             command: '/welcome', output: `
-████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗██╗   ██╗██╗  ██╗
-╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██║████╗  ██║██║   ██║╚██╗██╔╝
-   ██║   █████╗  ██████╔╝██╔████╔██║██║██╔██╗ ██║██║   ██║ ╚███╔╝ 
-   ██║   ██╔══╝  ██╔══██╗██║╚██╔╝██║██║██║╚██╗██║██║   ██║ ██╔██╗ 
-   ██║   ███████╗██║  ██║██║ ╚═╝ ██║██║██║ ╚████║╚██████╔╝██╔╝ ██╗
-   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝
+ ███████╗ █████╗ ███╗   ██╗ █████╗ ████████╗██╗  ██╗     ██████╗ ██████╗  ██████╗ ███╗   ██╗ █████╗ ███╗   ██╗██╗
+ ██╔════╝██╔══██╗████╗  ██║██╔══██╗╚══██╔══╝██║  ██║    ██╔════╝██╔═══██╗██╔═══██╗████╗  ██║██╔══██╗████╗  ██║██║
+ ███████╗███████║██╔██╗ ██║███████║   ██║   ███████║    ██║     ██║   ██║██║   ██║██╔██╗ ██║███████║██╔██╗ ██║██║
+ ╚════██║██╔══██║██║╚██╗██║██╔══██║   ██║   ██╔══██║    ██║     ██║   ██║██║   ██║██║╚██╗██║██╔══██║██║╚██╗██║██║
+ ███████║██║  ██║██║ ╚████║██║  ██║   ██║   ██║  ██║    ╚██████╗╚██████╔╝╚██████╔╝██║ ╚████║██║  ██║██║ ╚████║██║
+ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝
 
 [SYSTEM INITIALIZED] - Terminux Portfolio v1.0
 
@@ -238,63 +239,70 @@ Type help to see available commands.`
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-900 text-green-400 p-4 font-mono">
-            <div className="w-full max-w-5xl bg-black rounded-lg overflow-hidden shadow-2xl border border-green-400">
-                <div className="flex items-center gap-2 p-3 bg-gray-800 text-xs text-gray-400 border-none">
-                    <div className="flex gap-1.5 border-none">
-                        <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer border-none" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer border-none" />
-                        <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer border-none" />
-                    </div>
-                    <div className="flex-1 text-center font-semibold border-none">terminux@portfolio:~$ | Interactive Resume v1.0</div>
-                    <div className="text-xs border-none">
-                        <span className="text-green-400">●</span> ONLINE
-                    </div>
+        <div className="flex flex-col h-screen w-screen bg-black text-green-400 font-mono overflow-hidden">
+            <div className="flex items-center gap-2 p-3 bg-gray-800 text-xs text-gray-400 border-none shrink-0">
+                <div className="flex gap-1.5 border-none">
+                    <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer border-none" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer border-none" />
+                    <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer border-none" />
                 </div>
+                <div className="flex-1 text-center font-semibold border-none">terminux@portfolio:~$ | Interactive Resume v1.0</div>
+                <div className="text-xs border-none">
+                    <span className="text-green-400">●</span> ONLINE
+                </div>
+            </div>
 
-                <div
-                    ref={terminalRef}
-                    className="h-[75vh] overflow-y-auto p-4 space-y-3 bg-black cursor-text"
-                    style={{
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: '#10b981 #1f2937'
-                    }}
-                >
-                    {history.map((entry, i) => (
-                        <div key={i} className="space-y-2 border-none">
-                            <div className="flex gap-2 border-none">
-                                <span className="text-cyan-400 font-semibold border-none">terminux@portfolio:~$</span>
-                                <span className="text-white border-none">{entry.command}</span>
-                            </div>
-                            <div className="whitespace-pre-wrap text-gray-300 pl-6 leading-relaxed border-none">
-                                {renderOutput(entry.output)}
-                            </div>
+            <div
+                ref={terminalRef}
+                className="flex-1 overflow-y-auto p-4 space-y-3 bg-black cursor-text"
+                style={{
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#10b981 #1f2937'
+                }}
+            >
+                {history.map((entry, i) => (
+                    <div key={i} className="space-y-2 border-none">
+                        <div className="flex gap-2 border-none">
+                            <span className="text-cyan-400 font-semibold border-none">sanath@portfolio:~$</span>
+                            <span className="text-white border-none">{entry.command}</span>
                         </div>
-                    ))}
+                        <div className={cn(
+                            "whitespace-pre-wrap leading-relaxed border-none",
+                            entry.command === '/welcome' ? "text-center pl-0" : "text-left pl-6 text-gray-300"
+                        )}>
+                            {renderOutput(entry.output)}
+                        </div>
+                    </div>
+                ))}
 
-                    <div className="flex gap-2 items-center border-none">
-                        <span className="text-cyan-400 font-semibold border-none">terminux@portfolio:~$</span>
+                <div className="flex gap-2 items-center border-none relative">
+                    <span className="text-cyan-400 font-semibold border-none shrink-0">sanath@portfolio:~$</span>
+                    <div className="relative flex-1 flex items-center border-none overflow-hidden">
                         <input
                             ref={inputRef}
                             type="text"
                             value={currentCommand}
                             onChange={e => setCurrentCommand(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            className="flex-1 bg-transparent outline-none text-white caret-green-400 border-none"
+                            className="absolute inset-0 bg-transparent outline-none text-white caret-transparent border-none w-full"
+                            style={{ opacity: 1, zIndex: 10 }}
                             autoFocus
                             spellCheck="false"
                         />
-                        <span className="text-green-400 animate-pulse border-none">█</span>
+                        <div className="flex items-center pointer-events-none border-none whitespace-pre">
+                            <span className="text-white border-none opacity-100">{currentCommand}</span>
+                            <span className="w-2.5 h-5 bg-green-400 animate-pulse border-none ml-0.5"></span>
+                        </div>
                     </div>
-
-                    <div ref={bottomRef} />
                 </div>
 
-                <div className="bg-gray-800 px-4 py-2 text-xs text-gray-500 border-t border-gray-700">
-                    <div className="flex justify-between items-center border-none">
-                        <span>Type help for available commands • terminux@portfolio</span>
-                        <span>clear to reset terminal • Status: Ready</span>
-                    </div>
+                <div ref={bottomRef} />
+            </div>
+
+            <div className="bg-gray-800 px-4 py-2 text-xs text-gray-500 border-t border-gray-700 shrink-0">
+                <div className="flex justify-between items-center border-none">
+                    <span>Type help for available commands • sanath@portfolio</span>
+                    <span>clear to reset terminal • Status: Ready</span>
                 </div>
             </div>
         </div>
