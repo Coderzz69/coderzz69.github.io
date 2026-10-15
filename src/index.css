@@ -1,47 +1,73 @@
 @import "tailwindcss";
 
 @theme {
-  --color-terminal-bg: #000000;
-  --color-terminal-green: #00ff00;
-  --color-terminal-dim: #008000;
-  --font-mono: "Fira Code", "Courier New", monospace;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 }
 
 :root {
-  background-color: var(--color-terminal-bg);
-  color: var(--color-terminal-green);
+  color-scheme: dark;
+  background-color: #07090d;
   font-family: var(--font-mono);
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
-  background-color: #000000;
+  min-height: 100dvh;
+  background-color: #07090d;
 }
 
-/* Custom glow effect */
-.terminal-glow {
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+::selection {
+  background: rgba(52, 211, 153, 0.3);
+  color: #ecfdf5;
 }
 
-@keyframes fade-in {
+/* Gradient + glow for the ASCII banner */
+.banner-gradient {
+  background: linear-gradient(90deg, #34d399 0%, #22d3ee 55%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
+}
+
+/* Subtle CRT scanlines + vignette */
+.crt-overlay {
+  background:
+    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+@keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateX(-4px);
+    transform: translateY(6px);
   }
-
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 0.3s forwards;
+.rise-in {
+  animation: rise-in 0.35s ease-out both;
+}
+
+@keyframes cursor-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1.05s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in, .cursor-blink { animation: none; }
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -49,6 +75,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #004400;
-  border-radius: 2px;
+  background: #1e293b;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
