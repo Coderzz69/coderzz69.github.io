@@ -30,8 +30,8 @@ Welcome to my interactive resume. Type help to see available commands.` },
 [AVAILABLE_COMMANDS]
 
 about        Personal bio & objective
-projects     Featured RL, CV & ML projects
-github       More recent work from my GitHub
+projects     Featured projects (pinned on GitHub)
+github       More projects from my GitHub
 skills       Technical skills (ML, Cloud, Web)
 experience   Work history & internships
 education    Academic background
@@ -59,7 +59,48 @@ Type projects or github to see what I've been building.
         'projects': () => `
 [TECHNICAL PROJECTS]
 
-1. Geometry Dash AI Agent — Deep RL Controller
+1. Business Entity Resolution — ML Challenge 2026 (Team Chaicopath)
+   Matching business records across 20M+ noisy multilingual entries.
+   • Held-out macro F0.5 of 0.9714 (ROC AUC 0.9996)
+   • Conjunction-key sparse blocking keeps 97.8% of true pairs
+     in a top-15-per-source candidate set
+   • Synonym & transliteration tables learned from labels alone
+     (praivet→private, mharastr→maharashtra)
+   • Two-stage XGBoost matcher with partition-aware features and
+     per-entity expected-F0.5 decoding
+   • Tech: Python, XGBoost (CUDA), Pandas, sparse_dot_topn
+   https://github.com/Coderzz69/Business_Entity_Resolution_ML
+
+2. IntelliSignal-AI — AI Traffic Management (SSS Hackathon)
+   Decentralized multi-agent RL for Indian urban traffic control.
+   • Hierarchical MARL (DQN) trained on SUMO simulations
+   • Cut avg wait per vehicle by 57.7% and total wait time by
+     79.8% vs fixed-timer signals
+   • Green corridor gives emergency vehicles near-zero wait
+   • React dashboard with YOLO-based traffic video analysis
+   • Tech: Python, PyTorch, SUMO, YOLO, React
+   https://github.com/Coderzz69/Intellisense-AI
+
+3. DroneFleet — Master/slave drone coordination
+   Feasibility engine that decides if a mission is possible
+   before anything takes off.
+   • Drones and missions described in plain English
+   • Explains exactly what is missing when a mission is infeasible
+   • MQTT messaging, fault injection, local LLM support
+   • Retro GBA-style overworld as the operator interface
+   • Tech: Python, MQTT, LLMs
+   https://github.com/Coderzz69/DroneFleet
+
+4. PaddleOCR Dravidian — Tamil / Dravidian text recognition
+   Fork of PaddleOCR adapted for Dravidian scripts.
+   • PP-OCRv5 recognition retrained with Akshara (Unicode
+     grapheme cluster) tokenization
+   • 355-token verified Akshara dictionary
+   • Fine-tunes from the Tamil PP-OCRv5 mobile model
+   • Tech: Python, PaddlePaddle, PP-OCRv5
+   https://github.com/Coderzz69/PaddleOCR_Dravidian_Rep
+
+5. Geometry Dash AI Agent — Deep RL Controller
    Autonomous vision-based agent that learns jump timing with DQN.
    • RL environment from screen capture + automated input at 30+ FPS
    • CNN-based DQN trained on 100K+ frames: 4.5x survival vs random
@@ -67,48 +108,27 @@ Type projects or github to see what I've been building.
      cut training variance by 35%
    • 3x faster training via grayscale downsampling, frame
      preprocessing & parallel environment instances
-   • Custom reward shaping for stability in sparse-reward settings
    • Tech: Python, PyTorch, OpenCV, DQN
    https://github.com/Coderzz69/Geometry-Dash-Automation-using-Image-Processing-and-DQN
 
-2. Smart Incident Detection with YOLOv8
-   Real-time detection of fire, smoke & crowd density in CCTV feeds.
+6. Smart Incident Detection with YOLOv8
+   Real-time detection of fire, smoke, unconscious individuals and
+   crowd surges in live video streams.
    • YOLOv8 pipeline: 92% detection accuracy at 30+ FPS
    • Flask REST inference service for automated alert generation
    • Built for integration with live CCTV streams
    • Tech: Python, OpenCV, Flask, Ultralytics YOLOv8
    https://github.com/Coderzz69/Smart-Incident-Detection-with-YOLOv8
 
-3. ML Algorithms from Scratch
-   Core ML algorithms built without high-level ML libraries.
-   • Linear Regression: R2 = 0.96 on Salary Prediction
-   • Logistic Regression: 88% accuracy on Heart Disease Prediction
-   • Decision Tree: 96% accuracy on Iris
-   • Gradient Descent, BCE loss, Entropy & Information Gain
-     derived and coded from first principles
-   • Tech: Python, NumPy, Pandas, Matplotlib
-   https://github.com/Coderzz69/ml_projects_from_scratch
-
-Type github for more recent projects.
+Type github for more projects.
     `,
         'github': () => `
 [GITHUB PROJECTS]
 
-• IntelliSignal-AI — AI Traffic Management (SSS Hackathon)
-  Hierarchical multi-agent RL (DQN) on SUMO for Indian urban
-  traffic; cut avg wait per vehicle by 57.7% vs fixed timers,
-  plus a green corridor for emergency vehicles & YOLO dashboard.
-  https://github.com/Coderzz69/Intellisense-AI
-
-• DroneFleet — Master/slave drone coordination over MQTT
-  Feasibility engine checks whether a mission described in plain
-  English is possible before takeoff; local LLM, fault injection.
-  https://github.com/Coderzz69/DroneFleet
-
-• PaddleOCR Dravidian — Tamil / Dravidian text recognition
-  Adapts PP-OCRv5 with Akshara (Unicode grapheme cluster)
-  tokenization and a 355-token dictionary.
-  https://github.com/Coderzz69/PaddleOCR_Dravidian_Rep
+• ML Algorithms from Scratch
+  Linear/Logistic Regression & Decision Trees without ML libraries;
+  R2 = 0.96 (Salary), 88% (Heart Disease), 96% (Iris).
+  https://github.com/Coderzz69/ml_projects_from_scratch
 
 • VL-JEPA — Vision-language self-supervised learning
   JEPA-style masked latent prediction (ViT + BERT, EMA targets),
@@ -156,7 +176,7 @@ Cloud & Deployment:
   Model Deployment
 
 Frameworks & Tools:
-  Flask, FastAPI, OpenCV, NumPy, Pandas, Matplotlib, Git, Jupyter
+  Flask, FastAPI, XGBoost, OpenCV, NumPy, Pandas, Matplotlib, Git, Jupyter
 
 Web & Backend:
   Node.js, Express.js, Next.js, React, React Native, Firebase
@@ -196,7 +216,9 @@ University of Hyderabad, Hyderabad (2023 - 2028)
         'achievements': () => `
 [HACKATHONS, CERTIFICATIONS & WORKSHOPS]
 
-Hackathons:
+Hackathons & Competitions:
+• ML Challenge 2026 (Team Chaicopath): Business Entity Resolution,
+  held-out macro F0.5 of 0.9714
 • Technovista '25 – Campus Chaos Grid: ML system classifying
   power grid events using sensor graph features
 • SSS Hackathon: IntelliSignal-AI multi-agent RL traffic control
