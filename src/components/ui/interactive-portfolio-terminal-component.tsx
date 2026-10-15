@@ -29,13 +29,14 @@ Welcome to my interactive resume. Type help to see available commands.` },
         'help': () => `
 [AVAILABLE_COMMANDS]
 
-about       Personal bio & objective
-projects    Deep Reinforcement Learning & CV projects
-skills      Technical skill matrix (ML, Cloud, Web)
-experience  Work history & internships
-education   Academic background
-achievements Hackathons & Certificates
-contact     Connect with me
+about        Personal bio & objective
+projects     Featured RL, CV & ML projects
+github       More recent work from my GitHub
+skills       Technical skills (ML, Cloud, Web)
+experience   Work history & internships
+education    Academic background
+achievements Hackathons, certifications & workshops
+contact      Connect with me
 clear       Reset terminal
 help        Show this manual
     `,
@@ -47,64 +48,143 @@ Role: ML Engineer & Systems Developer
 Focus: Reinforcement Learning, Computer Vision, Real-time AI
 Status: 3rd Year Student @ University of Hyderabad
 
-Bio: Passionate machine learning engineer focused on building 
-autonomous agents and production-grade AI systems. Experienced 
-in RL pipelines, CV monitoring, and scalable backend architectures.
+Bio: Machine learning engineer focused on building autonomous
+agents and production-grade AI systems. Experienced in RL
+pipelines, computer vision, and deploying real-time inference
+APIs. Currently exploring multi-agent RL, self-supervised
+vision-language models, and OCR for Dravidian scripts.
+
+Type projects or github to see what I've been building.
     `,
         'projects': () => `
 [TECHNICAL PROJECTS]
 
-1. Geometry Dash AI Agent (Deep RL)
-   • Goal: Autonomous vision-based agent for jump timing
-   • Tech: Python, PyTorch, OpenCV, CNN-DQN
-   • Impact: Improved survival time 4.5x vs baseline
-   • Features: 100K+ frame training, Experience Replay (50K buffer)
+1. Geometry Dash AI Agent — Deep RL Controller
+   Autonomous vision-based agent that learns jump timing with DQN.
+   • RL environment from screen capture + automated input at 30+ FPS
+   • CNN-based DQN trained on 100K+ frames: 4.5x survival vs random
+   • Experience replay (50K buffer), epsilon decay & target networks
+     cut training variance by 35%
+   • 3x faster training via grayscale downsampling, frame
+     preprocessing & parallel environment instances
+   • Custom reward shaping for stability in sparse-reward settings
+   • Tech: Python, PyTorch, OpenCV, DQN
+   https://github.com/Coderzz69/Geometry-Dash-Automation-using-Image-Processing-and-DQN
 
-2. Smart Incident Detection (YOLOv8)
-   • Goal: Real-time fire, smoke, and crowd detection
-   • Tech: YOLOv8, Python, OpenCV, Flask
-   • Result: 92% detection accuracy at 30+ FPS
-   • Integration: REST API for live CCTV surveillance
+2. Smart Incident Detection with YOLOv8
+   Real-time detection of fire, smoke & crowd density in CCTV feeds.
+   • YOLOv8 pipeline: 92% detection accuracy at 30+ FPS
+   • Flask REST inference service for automated alert generation
+   • Built for integration with live CCTV streams
+   • Tech: Python, OpenCV, Flask, Ultralytics YOLOv8
+   https://github.com/Coderzz69/Smart-Incident-Detection-with-YOLOv8
 
 3. ML Algorithms from Scratch
-   • Goal: Low-level implementation of core AI models
-   • Models: Linear/Logistic Regression, Decision Trees
-   • Metrics: R2 = 0.96 (Salary Prediction), 96% Acc (Iris)
-   • Deep Dive: Manual Gradient Descent & Binary Cross-Entropy
+   Core ML algorithms built without high-level ML libraries.
+   • Linear Regression: R2 = 0.96 on Salary Prediction
+   • Logistic Regression: 88% accuracy on Heart Disease Prediction
+   • Decision Tree: 96% accuracy on Iris
+   • Gradient Descent, BCE loss, Entropy & Information Gain
+     derived and coded from first principles
+   • Tech: Python, NumPy, Pandas, Matplotlib
+   https://github.com/Coderzz69/ml_projects_from_scratch
+
+Type github for more recent projects.
+    `,
+        'github': () => `
+[GITHUB PROJECTS]
+
+• IntelliSignal-AI — AI Traffic Management (SSS Hackathon)
+  Hierarchical multi-agent RL (DQN) on SUMO for Indian urban
+  traffic; cut avg wait per vehicle by 57.7% vs fixed timers,
+  plus a green corridor for emergency vehicles & YOLO dashboard.
+  https://github.com/Coderzz69/Intellisense-AI
+
+• DroneFleet — Master/slave drone coordination over MQTT
+  Feasibility engine checks whether a mission described in plain
+  English is possible before takeoff; local LLM, fault injection.
+  https://github.com/Coderzz69/DroneFleet
+
+• PaddleOCR Dravidian — Tamil / Dravidian text recognition
+  Adapts PP-OCRv5 with Akshara (Unicode grapheme cluster)
+  tokenization and a 355-token dictionary.
+  https://github.com/Coderzz69/PaddleOCR_Dravidian_Rep
+
+• VL-JEPA — Vision-language self-supervised learning
+  JEPA-style masked latent prediction (ViT + BERT, EMA targets),
+  trained on a single 4GB consumer GPU.
+  https://github.com/Coderzz69/VL-JEPA
+
+• AgriEnv — Precision agriculture RL environment (OpenEnv)
+  Greenhouse control under water, nutrient, pest & energy
+  tradeoffs; FastAPI server, SB3 PPO training, Docker.
+  https://github.com/Coderzz69/my-openenv
+
+• ShopLens — E-commerce journey friction detection
+  Synthetic clickstream generator with hidden ground-truth
+  friction causes for training detection models.
+  https://github.com/Coderzz69/shoplens
+
+• Hackify — Developer skill verification platform
+  Next.js, Prisma/PostgreSQL, GitHub OAuth; SkillGraph from
+  GitHub activity + AI-evaluated coding challenges.
+  https://github.com/Coderzz69/Hackify
+
+• Budget Buddy — Cross-platform personal finance app
+  React Native + Expo, Clerk auth, NativeWind; Python backend.
+  https://github.com/Coderzz69/Budget-Buddy-Frontend
+
+• n8n Cold Email Automation
+  AI-personalized outreach (Gemini), Gmail, Google Sheets lead
+  tracking & Discord reply notifications.
+  https://github.com/Coderzz69/n8n-workflows
+
+All repositories: https://github.com/Coderzz69
     `,
         'skills': () => `
-[TECHNICAL SKILLS MATRIX]
-
-Machine Learning:
-  PyTorch/Scikit-learn  ████████████████████ 100%
-  Reinforcement Learning ██████████████████   90%
-  Deep Learning/CV      ██████████████████   90%
+[TECHNICAL SKILLS]
 
 Languages:
-  Python                ████████████████████ 100%
-  JavaScript/TypeScript  ██████████████       70%
-  C++/SQL               ████████████         60%
+  Python, JavaScript, TypeScript, C++, SQL, PostgreSQL
 
-Cloud & Tools:
-  AWS/Azure/Docker      ██████████████       70%
-  Flask/Node.js/Next.js ████████████████     80%
-  Git/OpenCV/NumPy      ████████████████████ 100%
+Machine Learning:
+  PyTorch, Scikit-learn, Deep Learning, Reinforcement Learning,
+  Computer Vision, Model Evaluation
+
+Cloud & Deployment:
+  AWS (EC2, S3), Azure Web Apps, Docker, REST APIs,
+  Model Deployment
+
+Frameworks & Tools:
+  Flask, FastAPI, OpenCV, NumPy, Pandas, Matplotlib, Git, Jupyter
+
+Web & Backend:
+  Node.js, Express.js, Next.js, React, React Native, Firebase
     `,
         'experience': () => `
 [WORK EXPERIENCE]
 
 Temperate Technologies | ML Intern
 June 2025 - August 2025 (On-Site)
-• Automating Low-cost Cold-Storage using RL
-• Designed crop storage suitability prediction system
-• Developed RL-based control policy for temp/humidity
-• Deployed real-time inference API using Flask & Docker
+Automating Low-cost Cold-Storage Using ML & Reinforcement Learning
+• Designed an environmental suitability prediction system
+  (Python, Pandas, Scikit-learn) for optimal crop storage
+• Developed an RL-based control policy to optimize temperature
+  and humidity under energy constraints
+• Analyzed performance with NumPy, Matplotlib & Jupyter and
+  validated decision stability across environmental conditions
+• Deployed a real-time inference API (Flask, REST, Docker)
+  enabling sensor-driven automated control
 
 Freelance Web Developer
 December 2024 - January 2025 (Remote)
-• Built responsive production website using Next.js
-• Optimized performance reducing load time by 40%
-• Served 500+ monthly active users
+• Built a responsive production website with Next.js,
+  TailwindCSS & Node.js serving 500+ monthly users
+• Gathered requirements directly with the client and delivered
+  the complete solution within 2 weeks
+• Improved page load speed by 40% via asset optimization
+• Owned end-to-end delivery: development, cloud deployment and
+  post-launch maintenance
     `,
         'education': () => `
 [ACADEMIC BACKGROUND]
@@ -114,13 +194,25 @@ University of Hyderabad, Hyderabad (2023 - 2028)
 • Relevant focus on AI/ML and Systems Architecture
     `,
         'achievements': () => `
-[HACKATHONS & CERTIFICATIONS]
+[HACKATHONS, CERTIFICATIONS & WORKSHOPS]
 
-• Technovista '25: Campus Chaos Grid - ML for power events
-• Smart Classroom Hackathon '24: Automated attendance prototype
-• IBM Full Stack Software Developer Certificate (Coursera)
-• Developing Apps with Django/Node.js (Coursera)
-• AI/ML Workshops: Shaastra 2026 (IIT Madras)
+Hackathons:
+• Technovista '25 – Campus Chaos Grid: ML system classifying
+  power grid events using sensor graph features
+• SSS Hackathon: IntelliSignal-AI multi-agent RL traffic control
+• Smart Classroom Management Hackathon '24: web prototype for
+  automated attendance & classroom safety monitoring
+
+Certifications (Coursera, Jan 2025):
+• IBM Full Stack Software Developer Professional Certificate
+• Developing Applications with Django and SQL
+• Developing Back-End Apps with Node.js and Express
+• Python for Data Science, AI & Development
+
+Workshops — Shaastra 2026, IIT Madras:
+• Deep Learning using YOLO
+• AI & Machine Learning
+• Ethical Web Hacking
     `,
         'contact': () => `
 [CONTACT INFORMATION]
@@ -230,6 +322,7 @@ Type help to see available commands.`
             if (part.includes('Phone:')) return <span key={index} className="inline-flex items-center gap-2"><Phone size={14} className="text-gray-400" /> Phone:</span>
             if (part.includes('Location:')) return <span key={index} className="inline-flex items-center gap-2"><MapPin size={14} className="text-gray-400" /> Location:</span>
             if (part.includes('[PERSONAL PROFILE]')) return <span key={index} className="inline-flex items-center gap-2"><BookOpen size={14} className="text-green-500" /> <strong>{part}</strong></span>
+            if (part.includes('[GITHUB PROJECTS]')) return <span key={index} className="inline-flex items-center gap-2"><Github size={14} className="text-green-500" /> <strong>{part}</strong></span>
             if (part.includes('[TECHNICAL PROJECTS]')) return <span key={index} className="inline-flex items-center gap-2"><Code size={14} className="text-green-500" /> <strong>{part}</strong></span>
             if (part.includes('[WORK EXPERIENCE]')) return <span key={index} className="inline-flex items-center gap-2"><Briefcase size={14} className="text-green-500" /> <strong>{part}</strong></span>
             if (part.includes('[HACKATHONS')) return <span key={index} className="inline-flex items-center gap-2"><Award size={14} className="text-green-500" /> <strong>{part}</strong></span>
