@@ -1,55 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
 }
 
 :root {
+  --bg: #161616;
+  --fg: #d0d0d0;
+  --dim: #7c7c7c;
+  --line: #2a2a2a;
+  --green: #98c379;
+  --blue: #7aa6da;
+  --yellow: #e5c07b;
   color-scheme: dark;
-  background-color: #07090d;
+  background-color: var(--bg);
   font-family: var(--font-mono);
+  font-variant-ligatures: none;
 }
 
 body {
   margin: 0;
   min-height: 100dvh;
-  background-color: #07090d;
+  background-color: var(--bg);
 }
 
 ::selection {
-  background: rgba(52, 211, 153, 0.3);
-  color: #ecfdf5;
-}
-
-/* Gradient + glow for the ASCII banner */
-.banner-gradient {
-  background: linear-gradient(90deg, #34d399 0%, #22d3ee 55%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.35));
-}
-
-/* Subtle CRT scanlines + vignette */
-.crt-overlay {
-  background:
-    repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 3px),
-    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.rise-in {
-  animation: rise-in 0.35s ease-out both;
+  background: #3a3a3a;
 }
 
 @keyframes cursor-blink {
@@ -58,27 +34,17 @@ body {
 }
 
 .cursor-blink {
-  animation: cursor-blink 1.05s infinite;
+  animation: cursor-blink 1s step-end infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rise-in, .cursor-blink { animation: none; }
+  .cursor-blink { animation: none; }
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #333;
 }
