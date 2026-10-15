@@ -13,6 +13,7 @@ export interface Job {
   period: string
   mode: string
   summary?: string
+  link?: string
   points: string[]
 }
 
@@ -22,17 +23,18 @@ export const profile = {
   name: 'Sanath Coonani',
   handle: 'sanath',
   role: 'ML Engineer & Systems Developer',
-  status: '3rd year · Integrated Masters, CSE · University of Hyderabad',
+  status: '3rd year · Integrated Masters (M.Tech), CSE · University of Hyderabad',
   location: 'Hyderabad, India',
-  focus: ['Reinforcement Learning', 'Computer Vision', 'Real-time AI', 'Entity Resolution'],
+  focus: ['Reinforcement Learning', 'Computer Vision & OCR', 'Explainable ML', 'MLOps'],
   bio: [
-    'I build learning systems that act in the real world: RL agents that control hardware and traffic, vision models that watch live video, and ML pipelines that hold up on tens of millions of noisy records.',
-    'Lately: multi-agent RL, self-supervised vision-language models, and OCR for Dravidian scripts.',
+    'ML engineering student with OCR research experience at C-DAC. I take models from data pipeline and training to Dockerised inference APIs, across deep learning, reinforcement learning and explainable ML.',
+    'I like learning systems that act in the real world: RL agents that steer traffic and cold-storage climate, vision models that read Tamil script or watch live video, and pipelines that hold up on tens of millions of noisy records.',
+    'I also lead the Codosapiens Coding Club at the University of Hyderabad.',
   ],
   stats: [
     { value: '0.9714', label: 'F0.5 · ML Challenge 2026' },
+    { value: '93.6%', label: 'Tamil OCR accuracy · C-DAC' },
     { value: '57.7%', label: 'less traffic wait (MARL)' },
-    { value: '30+ FPS', label: 'real-time CV inference' },
     { value: '35+', label: 'public repos' },
   ],
   contact: {
@@ -63,8 +65,8 @@ export const projects: Project[] = [
     tagline: 'SSS Hackathon · decentralized multi-agent RL for Indian urban traffic control.',
     metrics: ['−57.7% wait / vehicle', '−79.8% total wait', '~0s emergency wait'],
     highlights: [
-      'Hierarchical MARL (DQN) trained on SUMO simulations with mixed vehicle classes',
-      'Green corridor gives ambulances near-zero wait',
+      'Independent DQN agents per intersection, trained on SUMO (14.7s → 6.2s avg wait)',
+      'Hierarchical master controller creates green corridors for emergency vehicles',
       'React dashboard with YOLO-based traffic video analysis',
     ],
     tech: ['Python', 'PyTorch', 'SUMO', 'YOLO', 'React'],
@@ -84,13 +86,14 @@ export const projects: Project[] = [
   },
   {
     title: 'PaddleOCR Dravidian',
-    tagline: 'PaddleOCR fork for Tamil and Dravidian script recognition.',
-    metrics: ['355-token Akshara dict'],
+    tagline: 'C-DAC research · akshara-level Tamil OCR built on PaddleOCR.',
+    metrics: ['93.6% seq accuracy', '−40% target length', '99.8% label coverage'],
     highlights: [
-      'PP-OCRv5 recognition retrained with Akshara (Unicode grapheme cluster) tokenization',
-      'Fine-tunes from the Tamil PP-OCRv5 mobile model',
+      'Akshara (Unicode grapheme cluster) tokenization cut targets from 7.94 to 4.76 tokens per word',
+      'Integrated into PaddleOCR CTC & NRTR paths; fine-tuned PP-OCRv5 on a SLURM GPU cluster',
+      '355-token akshara dictionary covering 99.8% of 80K labels',
     ],
-    tech: ['Python', 'PaddlePaddle', 'PP-OCRv5'],
+    tech: ['Python', 'PaddlePaddle', 'PP-OCRv5', 'SLURM'],
     repo: gh('PaddleOCR_Dravidian_Rep'),
   },
   {
@@ -122,7 +125,7 @@ export const moreProjects = [
   { title: 'ML Algorithms from Scratch', note: 'Regression & trees without ML libs — R² 0.96, 96% on Iris', repo: gh('ml_projects_from_scratch') },
   { title: 'VL-JEPA', note: 'JEPA-style vision-language SSL on a single 4GB GPU', repo: gh('VL-JEPA') },
   { title: 'AgriEnv', note: 'Greenhouse-control RL environment · OpenEnv, FastAPI, PPO', repo: gh('my-openenv') },
-  { title: 'ShopLens', note: 'Synthetic clickstreams for journey-friction detection', repo: gh('shoplens') },
+  { title: 'ShopLens', note: 'TCS Hackathon · LightGBM finds the cause of 83.7% of cart abandonments; 0.94 AUC live drop-risk with SHAP nudges', repo: gh('shoplens') },
   { title: 'Hackify', note: 'Developer skill verification · Next.js, Prisma, GitHub OAuth', repo: gh('Hackify') },
   { title: 'Budget Buddy', note: 'Cross-platform finance app · React Native, Expo, Clerk', repo: gh('Budget-Buddy-Frontend') },
   { title: 'n8n Cold Email', note: 'AI-personalized outreach with Gemini, Gmail & Sheets', repo: gh('n8n-workflows') },
@@ -130,43 +133,60 @@ export const moreProjects = [
 
 export const experience: Job[] = [
   {
+    company: 'C-DAC',
+    role: 'AI/ML Research Intern',
+    period: 'May – Jul 2026',
+    mode: 'Chennai, on-site',
+    summary: 'Tamil OCR research · IndicOCR initiative',
+    points: [
+      'Shortened OCR target sequences by 40% (7.94 → 4.76 tokens/word) with akshara-level tokenization using Unicode grapheme clusters',
+      'Reached 93.6% validation sequence accuracy (0.986 normalised edit distance) by fine-tuning PP-OCRv5 on a SLURM GPU cluster',
+      'Built a word recognizer from scratch (SwinV2, BiLSTM, CTC / Transformer decoders); error analysis on dropped combining marks drove the tokenizer redesign',
+      'Built a 355-token akshara dictionary covering 99.8% of 80K labels by auditing and NFC-normalising the corpus',
+    ],
+  },
+  {
     company: 'Temperate Technologies',
     role: 'ML Intern',
     period: 'Jun – Aug 2025',
     mode: 'On-site',
-    summary: 'Automating low-cost cold storage with ML & reinforcement learning',
+    summary: 'Cold-storage climate control',
     points: [
-      'Built an environmental suitability predictor (Pandas, Scikit-learn) for optimal crop storage',
-      'Developed an RL control policy for temperature & humidity under energy constraints',
-      'Validated decision stability across conditions with NumPy, Matplotlib & Jupyter',
-      'Shipped a real-time inference API (Flask, REST, Docker) driving sensor-based control',
+      'Built a Scikit-learn model predicting environmental suitability for crop storage from cleaned sensor data',
+      'Trained an RL control policy regulating temperature & humidity under energy constraints',
+      'Served real-time inference and automated control via a containerised Flask REST API on Docker',
     ],
   },
   {
-    company: 'Freelance',
-    role: 'Web Developer',
-    period: 'Dec 2024 – Jan 2025',
-    mode: 'Remote',
+    company: 'Client Project',
+    role: 'Software Development Intern',
+    period: 'Dec 2025 – Feb 2026',
+    mode: 'Hybrid',
+    summary: 'Next.js, Node.js, TailwindCSS',
+    link: 'https://Flyholisticschools.com',
     points: [
-      'Built a responsive Next.js + Tailwind site serving 500+ monthly users',
-      'Delivered end to end in 2 weeks, from requirements to deployment',
-      'Cut page load time by 40% through asset optimization',
+      'Built and deployed a production website serving 5,000+ monthly users with Next.js and Node.js REST APIs',
+      'Improved page load speed by 40% through asset optimisation and performance tuning',
     ],
   },
 ]
 
 export const skills: { group: string; items: string[] }[] = [
-  { group: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'C++', 'SQL', 'PostgreSQL'] },
-  { group: 'Machine Learning', items: ['PyTorch', 'Scikit-learn', 'XGBoost', 'Reinforcement Learning', 'Computer Vision', 'Deep Learning'] },
-  { group: 'Cloud & Deploy', items: ['AWS (EC2, S3)', 'Azure Web Apps', 'Docker', 'REST APIs', 'Model Deployment'] },
-  { group: 'Frameworks & Tools', items: ['Flask', 'FastAPI', 'OpenCV', 'NumPy', 'Pandas', 'Matplotlib', 'Git', 'Jupyter'] },
-  { group: 'Web', items: ['React', 'Next.js', 'React Native', 'Node.js', 'Express', 'Firebase'] },
+  { group: 'ML / Deep Learning', items: ['PyTorch', 'Scikit-learn', 'LightGBM', 'XGBoost', 'Transformers', 'CNNs', 'LSTMs', 'RL (DQN, MARL)', 'Fine-tuning', 'SHAP'] },
+  { group: 'Vision & OCR', items: ['OpenCV', 'YOLOv8', 'PaddleOCR (PP-OCRv5)', 'SwinV2'] },
+  { group: 'Data', items: ['Pandas', 'NumPy', 'Matplotlib', 'Feature Engineering', 'Imbalanced Data', 'Model Evaluation'] },
+  { group: 'MLOps & Deploy', items: ['Docker', 'Flask', 'FastAPI', 'REST APIs', 'SLURM GPU training', 'AWS', 'Azure', 'Git'] },
+  { group: 'Languages & Web', items: ['Python', 'C++', 'Java', 'JavaScript', 'TypeScript', 'Node.js', 'Next.js', 'React', 'Django'] },
 ]
 
 export const achievements = {
+  leadership: [
+    { title: 'Lead Organizer, Codosapiens Coding Club', note: 'University of Hyderabad, 2025 – present · revived the club; runs coding contests, workshops and hackathons' },
+  ],
   competitions: [
     { title: 'ML Challenge 2026', note: 'Business Entity Resolution with Team Chaicopath — held-out F0.5 0.9714' },
     { title: "Technovista '25 · Campus Chaos Grid", note: 'Power-grid event classification from sensor graph features' },
+    { title: 'TCS Hackathon', note: 'ShopLens — e-commerce friction detection & recovery with LightGBM + SHAP' },
     { title: 'SSS Hackathon', note: 'IntelliSignal-AI multi-agent RL traffic control' },
     { title: 'Smart Classroom Hackathon 2024', note: 'Automated attendance & classroom safety prototype' },
   ],

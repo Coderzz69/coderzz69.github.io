@@ -240,7 +240,12 @@ function Experience() {
                             <h3 className="text-base font-bold text-slate-100">{job.role} <span className="text-cyan-400">@ {job.company}</span></h3>
                             <span className="text-xs text-slate-500">{job.period} · {job.mode}</span>
                         </div>
-                        {job.summary && <p className="mt-1 text-sm italic text-slate-400">{job.summary}</p>}
+                        {job.summary && (
+                            <p className="mt-1 text-sm italic text-slate-400">
+                                {job.summary}
+                                {job.link && <> · <Ext href={job.link} className="not-italic">live site</Ext></>}
+                            </p>
+                        )}
                         <ul className="mt-3 space-y-1.5 text-sm text-slate-300">
                             {job.points.map(pt => <li key={pt} className="flex gap-2"><span className="text-emerald-400">›</span><span>{pt}</span></li>)}
                         </ul>
@@ -272,9 +277,9 @@ function Education() {
         <div className="max-w-3xl">
             <Heading>Education</Heading>
             <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                <h3 className="font-bold text-slate-100">Integrated Masters in Computer Science and Engineering</h3>
+                <h3 className="font-bold text-slate-100">Integrated Masters (M.Tech) in Computer Science and Engineering</h3>
                 <p className="mt-1 text-cyan-400">University of Hyderabad</p>
-                <p className="mt-1 text-sm text-slate-500">2023 – 2028 · currently in 3rd year</p>
+                <p className="mt-1 text-sm text-slate-500">2023 – 2028 · Hyderabad, India</p>
             </div>
         </div>
     )
@@ -283,6 +288,12 @@ function Education() {
 function Achievements() {
     return (
         <div className="max-w-3xl space-y-7">
+            <div>
+                <Heading>Leadership</Heading>
+                {achievements.leadership.map(a => (
+                    <div key={a.title}><div className="font-semibold text-slate-100">{a.title}</div><div className="text-sm text-slate-400">{a.note}</div></div>
+                ))}
+            </div>
             <div>
                 <Heading>Competitions & hackathons</Heading>
                 <ul className="space-y-3">
@@ -355,8 +366,9 @@ function Neofetch() {
         ['OS', 'Portfolio Linux x86_64'],
         ['Host', 'University of Hyderabad'],
         ['Uptime', '3rd year of 5'],
+        ['Last job', 'AI/ML Research Intern @ C-DAC'],
         ['Shell', 'zsh + python3'],
-        ['Kernel', 'PyTorch · OpenCV · XGBoost'],
+        ['Kernel', 'PyTorch · PaddleOCR · LightGBM'],
         ['Focus', 'RL · Computer Vision · Real-time AI'],
         ['Projects', `${projects.length} pinned · 35+ public repos`],
         ['Best score', 'F0.5 0.9714 (ML Challenge 2026)'],
@@ -421,7 +433,7 @@ const COMMANDS: Record<string, Command> = {
     experience: { desc: 'Internships & freelance work', run: () => <Experience /> },
     skills: { desc: 'Languages, ML, cloud & web stack', run: () => <Skills /> },
     education: { desc: 'Academic background', run: () => <Education /> },
-    achievements: { desc: 'Competitions, certifications, workshops', run: () => <Achievements /> },
+    achievements: { desc: 'Leadership, competitions, certifications', run: () => <Achievements /> },
     contact: { desc: 'Ways to reach me', run: () => <Contact /> },
     resume: {
         desc: 'Open my resume (PDF)',
